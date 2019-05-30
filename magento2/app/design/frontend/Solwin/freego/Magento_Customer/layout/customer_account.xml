@@ -35,6 +35,13 @@
                             <argument name="path" xsi:type="string">customer/address</argument>
                         </arguments>
                     </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="scheduled-orders-list">
+                        <arguments>
+                            <argument name="path" xsi:type="string">appointment/account/list</argument>
+                            <argument name="label" xsi:type="string">Scheduled Orders</argument>
+                            <argument name="sortOrder" xsi:type="number">150</argument>
+                        </arguments>
+                    </block>
                 </block>
             </block>
         </referenceContainer>

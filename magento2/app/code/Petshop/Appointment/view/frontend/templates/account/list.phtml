@@ -1,0 +1,18 @@
+<?php
+    $scheduledOrders = $block->getScheduledOrders();
+?>
+
+
+    <table>
+        <thead></thead>
+        <tbody>
+        <?php foreach ($scheduledOrders as $schedule):?>
+            <tr>
+                <td><?php echo $schedule->getOrderId()?></td>
+                <td><?php echo $schedule->getCreatedAt()?></td>
+                <td><?php echo $schedule->getNextDate()?></td>
+            </tr>
+        <?php endforeach;?>
+        </tbody>
+    </table>
+

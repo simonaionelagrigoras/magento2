@@ -74,21 +74,30 @@ class Schedule extends \Magento\Framework\App\Action\Action
             $this->messageManager->addErrorMessage(__('Invalid schedule date'));
             return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
         }
-        $scheduleAlreadyExists = $this->appointmentFactory->create()
-            ->getCollection()
-            ->addFieldToFilter('order_id', $orderId)
-            ->count();
-
-        if($scheduleAlreadyExists){
-            $this->messageManager->addErrorMessage(__('You have already submitted your review for this order'));
-            return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
-        }
 
         $scheduledAt = $this->timezone->date(strtotime($scheduleDate))->format('Y-m-d');
         $createdAt   = $this->timezone->date(time())->format('Y-m-d');
+
+        $existingSchedule = $this->appointmentFactory->create()->load('order_id', $orderId);
+
+        if($existingSchedule->getId()){
+            try{
+                $existingSchedule->setNextDate($scheduledAt);
+                $existingSchedule->save();
+                $this->messageManager->addSuccessMessage(__('Your schedule was successfully submitted!'));
+                return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
+            }catch (Exception $e){
+
+                $this->logger->alert(__('Could not save the schedule for order %1', $orderId));
+                $this->logger->alert(__($e->getMessage()));
+                $this->messageManager->addErrorMessage(__('Could not save the next schedule for your order. Please try again later.'));
+                return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
+            }
+        }
+
         $schedule    = $this->appointmentFactory->create();
         $data = [
-            'customerId' => $order->getCustomerId(),
+            'customer_id' => $order->getCustomerId(),
             'order_id'   => $orderId,
             'created_at' => $createdAt,
             'next_date'  => $scheduledAt,

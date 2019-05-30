@@ -61,7 +61,6 @@ class Appointment extends AbstractModel
         $this->_init('Petshop\Appointment\Model\ResourceModel\Appointment');
     }
 
-
     /**
      * Processing object after save data
      *
