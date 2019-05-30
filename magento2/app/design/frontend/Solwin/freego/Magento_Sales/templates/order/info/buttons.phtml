@@ -20,8 +20,8 @@
                 "mage/calendar"
             ], function($){
                 $("#calendar_inputField").calendar({
-                    buttonText:"<?php echo __('Select Date') ?>",
-                    disableFunc: function(date) {
+                    buttonText: "<?php echo __('Select Date') ?>",
+                    disableFunc: function (date) {
                         var now = new Date();
                         if (date.getFullYear() < now.getFullYear()) {
                             return true;
@@ -37,6 +37,7 @@
                             }
                         }
                     }
+                })
             });
         </script>
     </div>
