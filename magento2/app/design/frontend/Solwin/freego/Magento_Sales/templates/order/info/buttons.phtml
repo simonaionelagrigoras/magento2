@@ -7,10 +7,22 @@
 // @codingStandardsIgnoreFile
 
 ?>
+<style>
+    .schedule-label, #schedule-order{
+        float: left;
+    }
+    #callendar-schedule{
+        display: none;
+        float:left;
+    }
+    .schedule{
+        min-height: 40px;
+    }
+</style>
 <div class="schedule">
-    <label><?php __('Schedule your current order in the future')?></label>
-    <button type="submit" title="Add to Cart" class="action tocart primary">
-        <span><?php __('Schedule Order')?></span>
+    <label class="schedule-label"><?php echo __('Schedule your current order in the future')?></label>
+    <button id="schedule-order" type="submit" title="Add to Cart" class="action tocart primary">
+        <span><?php echo __('Schedule Order')?></span>
     </button>
     <div id="callendar-schedule">
         <input type="text" class="input-text required-entry" id="calendar_inputField" name="calendar_inputField" aria-required="true" >
@@ -29,14 +41,24 @@
                     maxDate: max,
                     disableFunc: function (date) {
                         var day = date.getDay();
-                        if (day==6 || day==7) {
+                        if (day==1 || day==7) {
                             return true;
                         }
                     }
                 })
             });
         </script>
+
     </div>
+    <script>
+        require([
+            "jquery"
+        ], function($){
+            $(document).on('click', '#schedule-order', function(){
+                $('#callendar-schedule').toggle(300);
+            });
+        });
+    </script>
 </div>
 <div class="actions">
     <?php  $_order = $block->getOrder() ?>
