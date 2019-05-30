@@ -22,14 +22,13 @@ class Show extends \Magento\Framework\View\Element\Template
     public function __construct(
         Context $context,
         \Petshop\Appointment\Model\AppointmentFactory $appointmentFactory,
-        DefaultPathInterface $defaultPath,
         CustomerSession $customerSession,
         array $data = []
     )
     {
         $this->_customerSession = $customerSession;
         $this->appointmentFactory = $appointmentFactory;
-        parent::__construct($context, $defaultPath, $data);
+        parent::__construct($context, $data);
     }
 
     public function getScheduledOrders()

@@ -7,6 +7,8 @@
  */
 
 namespace Petshop\Appointment\Model;
+use Magento\Framework\App\ObjectManager;
+
 class Order extends \Magento\Sales\Model\Order{
 
     public function getScheduledAppointment()
