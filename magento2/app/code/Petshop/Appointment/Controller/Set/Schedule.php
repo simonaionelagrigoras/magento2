@@ -84,7 +84,7 @@ class Schedule extends \Magento\Framework\App\Action\Action
             try{
                 $existingSchedule->setNextDate($scheduledAt);
                 $existingSchedule->save();
-                $this->messageManager->addSuccessMessage(__('Your schedule was successfully submitted!'));
+                $this->messageManager->addSuccessMessage(__('Your schedule was successfully updated!'));
                 return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
             }catch (Exception $e){
 

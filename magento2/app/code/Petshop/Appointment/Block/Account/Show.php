@@ -10,6 +10,7 @@ namespace Petshop\Appointment\Block\Account;
 
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\DefaultPathInterface;
+use Magento\Framework\View\Element\Html\Link\Current;
 use Magento\Framework\View\Element\Template\Context;
 
 class Show extends \Magento\Framework\View\Element\Template
@@ -32,7 +33,11 @@ class Show extends \Magento\Framework\View\Element\Template
 
     public function getScheduledOrders()
     {
-        return $this->appointmentFactory()->create();
+        $customer  = $this->_customerSession->getCustomerId();
+        if(!$customer){
+            return [];
+        }
+        return $this->appointmentFactory->create()->addFieldToFilter('customer_id', $customer);
     }
 
 }
