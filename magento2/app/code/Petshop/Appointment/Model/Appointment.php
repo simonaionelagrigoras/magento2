@@ -58,7 +58,7 @@ class Appointment extends AbstractModel
      */
     protected function _construct()
     {
-        $this->_init('Carrefour\VendorInvoice\Model\ResourceModel\Commission');
+        $this->_init('Petshop\Appointment\Model\ResourceModel\Appointment');
     }
 
 
