@@ -78,7 +78,7 @@ class Schedule extends \Magento\Framework\App\Action\Action
         $scheduledAt = $this->timezone->date(strtotime($scheduleDate))->format('Y-m-d');
         $createdAt   = $this->timezone->date(time())->format('Y-m-d');
 
-        $existingSchedule = $this->appointmentFactory->create()->load('order_id', $orderId);
+        $existingSchedule = $this->appointmentFactory->create()->load($orderId, 'order_id');
 
         if($existingSchedule->getId()){
             try{
