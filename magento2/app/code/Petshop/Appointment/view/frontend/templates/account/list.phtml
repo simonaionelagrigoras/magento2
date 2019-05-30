@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         <?php foreach ($scheduledOrders as $schedule):?>
-            <tr>
+            <tr><?php print_r($schedule->getData()); exit;?>
                 <td><?php echo $schedule->getCreatedAt()?></td>
                 <td><?php echo $schedule->getNextDate()?></td>
                 <td><a href="<?php $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
