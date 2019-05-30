@@ -28,7 +28,7 @@ The application is based on php framework Magento ver. 2.2.6
  The MVC design pattern decouples these major components allowing for code reuse and parallel development.
  (source [Wikipedia](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller))
 
-![MVC](mvc.png)
+![MVC](mvc.jpg)
 
 
 
