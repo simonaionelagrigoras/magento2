@@ -65,14 +65,14 @@ class InstallSchema implements InstallSchemaInterface
                     'created_at',
                     Table::TYPE_DATE,
                     null,
-                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    ['nullable' => false, 'default' => '0000-00-00'],
                     'Created At'
                 )
                 ->addColumn(
                     'next_date',
                     Table::TYPE_DATE,
                     null,
-                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    ['nullable' => false, 'default' => '0000-00-00'],
                     'Next Delivery Date'
                 )
                 ->addColumn(
