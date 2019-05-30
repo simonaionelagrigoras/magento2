@@ -13,7 +13,7 @@ class Order extends \Magento\Sales\Model\Order{
     public function getScheduledAppointment()
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $schedule =  $objectManager->create('Petshop\Appointment\Model\AppointmentFactory')->create()->load('order_id', $this->getId());
+        $schedule =  $objectManager->create('Petshop\Appointment\Model\AppointmentFactory')->create()->load($this->getId(), 'order_id');
         return $schedule;
     }
 }
