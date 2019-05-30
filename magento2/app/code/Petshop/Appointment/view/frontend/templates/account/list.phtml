@@ -1,15 +1,27 @@
 <?php
     $scheduledOrders = $block->getScheduledOrders();
 ?>
+<style>
+    .list-schedules th>td{
+        color: #f48256;
+        font-weight: 600;
+    }
+</style>
 <?php if(count($scheduledOrders)):?>
-    <table>
-        <thead></thead>
+    <table class="list-schedules">
+        <thead>
+            <th>
+                <td><?php echo__('Created At') ?></td>
+                <td><?php echo__('Order Next Date') ?></td>
+                <td><?php echo__('Order No.') ?></td>
+            </th>
+        </thead>
         <tbody>
         <?php foreach ($scheduledOrders as $schedule):?>
             <tr>
-                <td><?php echo $schedule->getOrderId()?></td>
                 <td><?php echo $schedule->getCreatedAt()?></td>
                 <td><?php echo $schedule->getNextDate()?></td>
+                <td><a href="<?php $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
             </tr>
         <?php endforeach;?>
         </tbody>

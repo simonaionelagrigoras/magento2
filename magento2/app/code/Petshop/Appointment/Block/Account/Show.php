@@ -37,7 +37,14 @@ class Show extends \Magento\Framework\View\Element\Template
         if(!$customer){
             return [];
         }
-        return $this->appointmentFactory->create()->addFieldToFilter('customer_id', $customer);
+        $schedulesCollection = $this->appointmentFactory->create()->addFieldToFilter('customer_id', $customer);
+        $schedulesCollection->getSelect()->joinLeft(
+            ['sales_order' => 'sales_order'],
+            'sales_order.entity_id = main_table.order_id',
+            ['order_increment_id' => 'sales_order.icrement_id']
+        );
+
+        return $schedulesCollection;
     }
 
 }
