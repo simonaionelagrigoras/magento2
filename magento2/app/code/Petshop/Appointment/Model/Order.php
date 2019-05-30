@@ -7,14 +7,13 @@
  */
 
 namespace Petshop\Appointment\Model;
-use Magento\Framework\App\ObjectManager;
 
 class Order extends \Magento\Sales\Model\Order{
 
     public function getScheduledAppointment()
     {
-        $objectManager = ObjectManager::getInstance();
-        $schedule =  $objectManager->create('Petshop\Appointment\Model\Appointment')->load('order_id', $this->getId());
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $schedule =  $objectManager->create('Petshop\Appointment\Model\AppointmentFactory')->create()->load('order_id', $this->getId());
         return $schedule;
     }
 }
