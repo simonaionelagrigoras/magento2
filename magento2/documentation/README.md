@@ -1,6 +1,5 @@
 # Pet Shop 
-## Grigoras Simona
-## Cloud Computing (Faculty of Computer Science Iasi)
+##### Grigoras Simona - Cloud Computing (Faculty of Computer Science Iasi)
  
  ## Google Cloud Platform Setup
    #### Creating a VM instance
