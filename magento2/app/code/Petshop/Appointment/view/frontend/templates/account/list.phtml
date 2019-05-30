@@ -25,7 +25,7 @@
             <tr>
                 <td><?php echo $schedule->getCreatedAt()?></td>
                 <td><?php echo $schedule->getNextDate()?></td>
-                <td><a href="<?php echo $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
+                <td><a href="<?php echo $block->getUrl('sales/order/view/order_id/' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
             </tr>
         <?php endforeach;?>
         </tbody>
