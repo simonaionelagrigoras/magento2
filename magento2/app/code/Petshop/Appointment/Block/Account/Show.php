@@ -21,7 +21,7 @@ class Show extends \Magento\Framework\View\Element\Template
 
     public function __construct(
         Context $context,
-        \Petshop\Appointment\Model\AppointmentFactory $appointmentFactory,
+        \Petshop\Appointment\Model\ResourceModel\Appointment\CollectionFactory $appointmentFactory,
         CustomerSession $customerSession,
         array $data = []
     )
@@ -33,7 +33,7 @@ class Show extends \Magento\Framework\View\Element\Template
 
     public function getScheduledOrders()
     {
-        return $this->appointmentFactory()->create()->getCollection();
+        return $this->appointmentFactory()->create();
     }
 
 }
