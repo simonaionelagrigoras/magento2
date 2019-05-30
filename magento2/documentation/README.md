@@ -77,6 +77,92 @@
      ```
      (source [cloudkul](https://cloudkul.com/blog/lamp-installation-on-google-cloud/))
      
+   #### Magento 2 Installation on Google Cloud via Composer
+   - To install magento2 with composer, first create the Access keys of magento marketplace. If you have an account on Magento Marketplace, simply signin and generate the access keys. 
+   If you don’t have an account, create an account by registering yourself on marketplace.magento.com  
+   - First install composer on the server.
+   ```
+   sudo wget -O /usr/local/bin/composer http://getcomposer.org/composer.phar
+   sudo chmod +x /usr/local/bin/composer
+   ```
+   - Install magento latest version through composer:
+   ```
+   composer create-project --repository=https://repo.magento.com/ magento/project-community-edition magento2
+   ```
+   - Then copy the magento2 files to the Document root of the webserver.
+   ```
+   sudo mv magento2 /var/www/
+   ```
+   - Give the proper web-server permissions.
+   ```
+   sudo chown -R www-data:www-data /var/www/
+   ```
+   ##### Configure Apache
+   ```
+   sudo nano /etc/apache2/sites-enabled/000-default.conf
+   ```
+   ```
+   <VirtualHost *:80>
+           # The ServerName directive sets the request scheme, hostname and port that
+           # the server uses to identify itself. This is used when creating
+           # redirection URLs. In the context of virtual hosts, the ServerName
+           # specifies what hostname must appear in the request's Host: header to
+           # match this virtual host. For the default virtual host (this file) this
+           # value is not decisive as it is used as a last resort host regardless.
+           # However, you must set it for any further virtual host explicitly.
+           #ServerName mywebshop.dev.com
+           #ServerAlias www.mywebshop.dev.com
+   
+           ServerAdmin webmaster@localhost
+           DocumentRoot /var/www/html/magento2
+           <Directory /var/www/html/magento2>
+           Options Indexes FollowSymLinks MultiViews
+           Require all granted
+           AllowOverride all
+           </Directory>
+           # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+           # error, crit, alert, emerg.
+           # It is also possible to configure the loglevel for particular
+           # modules, e.g.
+           #LogLevel info ssl:warn
+   
+           ErrorLog ${APACHE_LOG_DIR}/error.log
+           CustomLog ${APACHE_LOG_DIR}/access.log combined
+   
+           # For most configuration files from conf-available/, which are
+           # enabled or disabled at a global level, it is possible to
+           # include a line for only one particular virtual host. For example the
+           # following line enables the CGI configuration for this host only
+           # after it has been globally disabled with "a2disconf".
+           #Include conf-available/serve-cgi-bin.conf
+   </VirtualHost>
+   
+   # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+   ```
+   - Restart Apache server.
+   ```
+   sudo service apache2 restart
+   ```
+   
+   ##### Create a MySQL Database and User
+   - Login to your MySQL server and create a user and database for your Magento application. 
+   ```
+   mysql -h <mysql-instance-public-ip> -u root -p
+   ```
+   ```
+   > CREATE DATABASE magento2;
+   > CREATE USER 'magento_user'@'%' IDENTIFIED BY 'user_pwd';
+   > GRANT ALL PRIVILEGES ON magento2.* TO 'magento_user'@'%';
+   > FLUSH PRIVILEGES;
+   > exit
+   ```
+   
+   ##### Installing Magento2
+   - You can install magento2 by hitting the public IP of the instance or the domain name if configured in DNS on the web browser.
+   - Follow the web GUI interface and provide the required information to install magento2 on the server.
+   
+  (source [cloudkul](https://cloudkul.com/blog/install-magento2-on-google-cloud/))
+ 
  ## Implementation
 The application is based on php framework Magento ver. 2.2.6
 
