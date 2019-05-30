@@ -2,9 +2,13 @@
     $scheduledOrders = $block->getScheduledOrders();
 ?>
 <style>
-    .list-schedules thead td{
+    .list-schedules thead td, .notice span{
         color: #f48256;
         font-weight: 600;
+    }
+    .notice{
+        font-size: 11px;
+        font-style: italic;
     }
 </style>
 <?php if($scheduledOrders->count()):?>
@@ -21,12 +25,13 @@
             <tr>
                 <td><?php echo $schedule->getCreatedAt()?></td>
                 <td><?php echo $schedule->getNextDate()?></td>
-                <td><a href="<?php $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
+                <td><a href="<?php echo $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
             </tr>
         <?php endforeach;?>
         </tbody>
     </table>
-    <p><?php echo __('You will receive an email notification 48 hours before reordering your scheduled order')?></p>
+    <br/>
+    <p class="notice"><span>*</span><?php echo __('You will receive an email notification 48 hours before reordering your scheduled order')?></p>
 <?php else:?>
     <p><?php echo __('You have no scheduled orders')?></p>
 <?php endif;?>
