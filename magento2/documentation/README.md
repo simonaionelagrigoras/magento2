@@ -165,9 +165,6 @@
  ## Implementation
 The application is based on php framework Magento ver. 2.2.6
 
- ## User interaction flow Diagram
-
-![Diag](https://raw.githubusercontent.com/simonaionelagrigoras/sofy/master/documentation/flow_diagram.png)
 
  ## Bussiness Canvas Plan
  ![Bussiness Canvas Plan](Petshop_Business_Model_Canvas.png)
