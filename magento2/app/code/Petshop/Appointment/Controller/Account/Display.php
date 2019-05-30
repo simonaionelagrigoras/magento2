@@ -44,4 +44,3 @@ class Display extends \Magento\Framework\App\Action\Action
     }
 }
 ?>
-app/code/YourNamespace/YourModule/Controller/You

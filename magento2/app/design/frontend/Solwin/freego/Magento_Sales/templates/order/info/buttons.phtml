@@ -26,7 +26,7 @@
 </style>
 <?php  $_order       = $block->getOrder() ?>
 <?php  $schedule     = $_order->getScheduledAppointment() ?>
-<?php  $scheduleDate = $schedule->getId() ? $schedule->getNextDate() : '' ?>
+<?php  $scheduleDate = $schedule && $schedule->getId() ? $schedule->getNextDate() : '' ?>
 <form id="order-schedule" action="<?php echo $block->getUrl('appointment/set/schedule')?>">
     <p>
         <?php if($schedule->getId()):?>
