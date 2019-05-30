@@ -10,7 +10,6 @@ namespace Petshop\Appointment\Block\Account;
 
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\DefaultPathInterface;
-use Magento\Framework\View\Element\Html\Link\Current;
 use Magento\Framework\View\Element\Template\Context;
 
 class Show extends \Magento\Framework\View\Element\Template

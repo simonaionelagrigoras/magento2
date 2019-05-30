@@ -40,7 +40,10 @@ class Display extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        return $this->resultPageFactory->create();
+        $collection = $this->appointmentFactory->create()->getCollection();
+        $this->_view->loadLayout();
+        $this->_view->getLayout()->getBlock('scheduled.orders.list')->setSchedules($collection);
+        $this->_view->renderLayout();
     }
 }
 ?>
