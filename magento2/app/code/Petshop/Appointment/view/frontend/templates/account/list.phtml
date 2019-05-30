@@ -7,18 +7,18 @@
         font-weight: 600;
     }
 </style>
-<?php if(count($scheduledOrders)):?>
+<?php if($scheduledOrders->count()):?>
     <table class="list-schedules">
         <thead>
-            <th>
-                <td><?php echo__('Created At') ?></td>
-                <td><?php echo__('Order Next Date') ?></td>
-                <td><?php echo__('Order No.') ?></td>
-            </th>
+            <tr>
+                <td><?php echo __('Created At') ?></td>
+                <td><?php echo __('Order Next Date') ?></td>
+                <td><?php echo __('Order No.') ?></td>
+            </tr>
         </thead>
         <tbody>
         <?php foreach ($scheduledOrders as $schedule):?>
-            <tr><?php print_r($schedule->getData()); exit;?>
+            <tr>
                 <td><?php echo $schedule->getCreatedAt()?></td>
                 <td><?php echo $schedule->getNextDate()?></td>
                 <td><a href="<?php $block->getUrl('/sales/order/view/order_id' . $schedule->getOrderId())?>"><?php echo $schedule->getOrderIncrementId()?></a></td>
@@ -26,6 +26,7 @@
         <?php endforeach;?>
         </tbody>
     </table>
+    <p><?php echo __('You will receive an email notification 48 hours before reordering your scheduled order')?></p>
 <?php else:?>
     <p><?php echo __('You have no scheduled orders')?></p>
 <?php endif;?>
