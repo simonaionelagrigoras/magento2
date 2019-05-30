@@ -39,7 +39,7 @@
                         <arguments>
                             <argument name="path" xsi:type="string">appointment/account/display</argument>
                             <argument name="label" xsi:type="string">Scheduled Orders</argument>
-                            <argument name="sortOrder" xsi:type="number">150</argument>
+                            <argument name="sortOrder" xsi:type="number">100</argument>
                         </arguments>
                     </block>
                 </block>
