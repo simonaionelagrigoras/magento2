@@ -9,10 +9,9 @@
 ?>
 <style>
     .schedule-label, #schedule-order{
-        float: left;
+        color: #f2703e;
     }
     #callendar-schedule{
-
         float:left;
     }
     .schedule{
@@ -22,14 +21,14 @@
     }
 </style>
 <?php  $_order = $block->getOrder() ?>
-<form id="order-schedule" action="<?php $block->getUrl('appointment/schedule')?>">
-    <p><label class="schedule-label"><?php echo __('Click here to schedule you Reorder')?></label></p>
+<form id="order-schedule" action="<?php echo $block->getUrl('appointment/set/schedule')?>">
+    <p><label class="schedule-label"><strong><?php echo __('Click here to schedule your Reorder')?></strong></label></p>
     <script>
         require([
             "jquery"
         ], function($){
             $(document).on('click', '.schedule-label', function(){
-                $('#schedule-order').toggle(300);
+                $('.schedule').toggle(300);
             });
         });
     </script>
@@ -37,7 +36,7 @@
 
         <div id="callendar-schedule">
             <input type="hidden" class="input-text" id="schedule_order_id" name="order_id" value="<?php echo $_order->getId()?>" aria-required="true" >
-            <input type="text" class="input-text required-entry" id="calendar_inputField" name="calendar_inputField" aria-required="true" >
+            <input type="text" placeholder="Click to select date" class="input-text required-entry" id="calendar_inputField" name="calendar_inputField" aria-required="true" >
             <script>
                 require([
                     "jquery",
@@ -73,7 +72,7 @@
         $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
             ->getPostData($block->getReorderUrl($_order))
         ?>' class="action order">
-            <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
+            <span><?= /* @escapeNotVerified */ __('Reorder Now') ?></span>
         </a>
     <?php endif ?>
     <a class="action print"

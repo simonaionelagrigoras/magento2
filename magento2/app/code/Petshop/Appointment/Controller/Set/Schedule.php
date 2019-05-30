@@ -6,7 +6,7 @@
  * Time: 23:03
  */
 
-namespace Petshop\Appointment\Controller\Schedule;
+namespace Petshop\Appointment\Controller\Set;
 
 use Magento\Framework\Controller\ResultFactory;
 use Petshop\Appointment\Model\AppointmentFactory;
