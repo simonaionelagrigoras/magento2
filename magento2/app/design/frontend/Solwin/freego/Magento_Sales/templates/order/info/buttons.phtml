@@ -22,26 +22,21 @@
                 $("#calendar_inputField").calendar({
                     buttonText:"<?php echo __('Select Date') ?>",
                     disableFunc: function(date) {
-                        var now= new Date();
-                        if(date.getFullYear()<now.getFullYear())
-                        {
+                        var now = new Date();
+                        if (date.getFullYear() < now.getFullYear()) {
                             return true;
                         }
-                        if(date.getFullYear()==now.getFullYear())
-                        {
-                            if(date.getMonth()<now.getMonth())
-                            {
+                        if (date.getFullYear() == now.getFullYear()) {
+                            if (date.getMonth() < now.getMonth()) {
                                 return true;
                             }
                         }
-                        if(date.getMonth()==now.getMonth())
-                        {
-                            if(date.getDate()<now.getDate())
-                            {
+                        if (date.getMonth() == now.getMonth()) {
+                            if (date.getDate() < now.getDate()) {
                                 return true;
                             }
                         }
-                });
+                    }
             });
         </script>
     </div>
