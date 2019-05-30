@@ -41,7 +41,7 @@ class Show extends \Magento\Framework\View\Element\Template
         $schedulesCollection->getSelect()->joinLeft(
             ['sales_order' => 'sales_order'],
             'sales_order.entity_id = main_table.order_id',
-            ['order_increment_id' => 'sales_order.icrement_id']
+            ['order_increment_id' => 'sales_order.increment_id']
         );
 
         return $schedulesCollection;
