@@ -65,14 +65,14 @@ class Schedule extends \Magento\Framework\App\Action\Action
 
         if(empty($orderId = $this->getRequest()->getParam('order_id'))) {
             $this->messageManager->addErrorMessage(__('Ther was a problem processing your request'));
-            return $resultRedirect->setUrl('sales/order/history');
+            return $resultRedirect->setUrl('/sales/order/history');
         }
 
         $order  = $this->orderFactory->create()->load($orderId);
         $scheduleDate = $this->getRequest()->getParam('calendar_inputField');
         if(is_null($scheduleDate)){
             $this->messageManager->addErrorMessage(__('Invalid schedule date'));
-            return $resultRedirect->setUrl('sales/order/view/order_id/' . $orderId);
+            return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
         }
         $scheduleAlreadyExists = $this->appointmentFactory->create()
             ->getCollection()
@@ -81,7 +81,7 @@ class Schedule extends \Magento\Framework\App\Action\Action
 
         if($scheduleAlreadyExists){
             $this->messageManager->addErrorMessage(__('You have already submitted your review for this order'));
-            return $resultRedirect->setUrl('/');
+            return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
         }
 
         $scheduledAt = $this->timezone->date(strtotime($scheduleDate))->format('Y-m-d');
@@ -103,11 +103,11 @@ class Schedule extends \Magento\Framework\App\Action\Action
             $this->logger->alert(__('Could not save the schedule for order %1', $orderId));
             $this->logger->alert(__($e->getMessage()));
             $this->messageManager->addErrorMessage(__('Could not save the next schedule for your order. Please try again later.'));
-            return $resultRedirect->setUrl('sales/order/view/order_id/' . $orderId);
+            return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
         }
 
         $this->messageManager->addSuccessMessage(__('Your schedule was successfully submitted!'));
-        return $resultRedirect->setUrl('sales/order/view/order_id/' . $orderId);
+        return $resultRedirect->setUrl('/sales/order/view/order_id/' . $orderId);
     }
 
 }
